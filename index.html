@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Laboratorio interactivo de teoría de grafos y álgebra lineal">
+  <title>Grafos y Álgebra Lineal</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header class="hero">
+    <p class="eyebrow">ÁLGEBRA LINEAL INTERACTIVA</p>
+    <h1>Grafos y matrices</h1>
+    <p>
+      Modifica una red, explora sus matrices y descubre
+      cómo el álgebra lineal describe las conexiones.
+    </p>
+  </header>
+
+  <main>
+    <section class="theory">
+      <h2>01. De un grafo a una matriz</h2>
+      <p>
+        Un grafo simple no dirigido se representa mediante
+        un conjunto de vértices y un conjunto de aristas.
+        Cada arista indica qué vértices están conectados.
+      </p>
+
+      <div class="formula">
+        G = (V,E)
+      </div>
+
+      <p>
+        La matriz de adyacencia A registra estas conexiones:
+        Aᵢⱼ = 1 si existe una arista entre los vértices i y j,
+        y Aᵢⱼ = 0 en caso contrario.
+      </p>
+      <p>
+        En un grafo simple no dirigido, A es simétrica
+        y su diagonal contiene ceros.
+      </p>
+    </section>
+
+    <section class="workspace">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">EXPERIMENTO</p>
+          <h2>02. Construye tu grafo</h2>
+        </div>
+        <button id="resetBtn" class="secondary">
+          Reiniciar
+        </button>
+      </div>
+
+      <p class="hint">
+        Arrastra los vértices para moverlos. Selecciona
+        dos vértices para agregar o quitar una arista.
+      </p>
+
+      <div class="graph-layout">
+        <div class="graph-panel">
+          <svg id="graph"
+               viewBox="0 0 500 340"
+               role="img"
+               aria-label="Grafo interactivo de cuatro vértices">
+          </svg>
+          <div class="legend">
+            <span><i class="dot"></i> Vértice</span>
+            <span><i class="dot selected-dot"></i> Seleccionado</span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <h3>Conexiones</h3>
+          <p id="selectionInfo" aria-live="polite">
+            Selecciona dos vértices.
+          </p>
+
+          <button id="toggleEdgeBtn" disabled>
+            Agregar arista
+          </button>
+
+          <div class="control-group">
+            <label for="edgeSelect">Aristas existentes</label>
+            <select id="edgeSelect">
+              <option value="">Selecciona una arista</option>
+            </select>
+            <button id="removeEdgeBtn" class="secondary">
+              Quitar arista elegida
+            </button>
+          </div>
+
+          <div class="control-group">
+            <h3>Resumen del grafo</h3>
+            <p id="edgeCount"></p>
+            <p id="degreeSum"></p>
+            <p id="components"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="matrices">
+      <p class="eyebrow">REPRESENTACIÓN ALGEBRAICA</p>
+      <h2>03. Las matrices del grafo</h2>
+      <p>
+        Cada cambio en el grafo modifica automáticamente
+        las matrices que lo representan.
+      </p>
+
+      <div class="matrix-grid">
+        <article class="matrix-card">
+          <h3>Matriz de adyacencia A</h3>
+          <p>Indica qué vértices están conectados.</p>
+          <div id="adjacencyMatrix" class="matrix-output"></div>
+        </article>
+
+        <article class="matrix-card">
+          <h3>Matriz diagonal D</h3>
+          <p>Contiene el grado de cada vértice.</p>
+          <div id="degreeMatrix" class="matrix-output"></div>
+        </article>
+
+        <article class="matrix-card">
+          <h3>Matriz laplaciana L</h3>
+          <p>L = D − A.</p>
+          <div id="laplacianMatrix" class="matrix-output"></div>
+        </article>
+
+        <article class="matrix-card">
+          <h3>Matriz A²</h3>
+          <p>
+            Su entrada (i,j) cuenta los recorridos de
+            longitud dos de i a j.
+          </p>
+          <div id="squareMatrix" class="matrix-output"></div>
+        </article>
+      </div>
+
+      <div class="insight">
+        <h3>¿Qué cambia matemáticamente?</h3>
+        <p id="insightText" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="theory">
+      <h2>04. Preguntas para explorar</h2>
+      <ol>
+        <li>
+          ¿Por qué la matriz de adyacencia es simétrica?
+        </li>
+        <li>
+          ¿Qué sucede con los grados cuando agregas una arista?
+        </li>
+        <li>
+          ¿Por qué las sumas de las filas de la matriz
+          laplaciana son cero?
+        </li>
+        <li>
+          ¿Qué representa una entrada no nula de A²?
+        </li>
+        <li>
+          ¿Cómo cambia la red si eliminas todas las aristas
+          de un vértice?
+        </li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <p>Laboratorio de Álgebra Lineal · Teoría de grafos</p>
+  </footer>
+</body>
+</html>
